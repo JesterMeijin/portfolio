@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title>Yann Galan — CV</title>
+<style>
+  :root {
+    --ground: #eceef2;
+    --surround: #c3c9d4;
+    --ink: #12151c;
+    --accent: #0f6b74;
+    --accent-light: #3f8f96;
+    --amber: #c06a0c;
+    --rule: #cfd4dd;
+    --muted: #5b6472;
+    --tag: #e2e6ec;
+    --tag-ink: #1f2733;
+    --panel: #f5f6f9;
+    --chip-ink: #f6f8fa;
+    --display: "Bahnschrift", "Segoe UI Semibold", "Arial Narrow", Arial, sans-serif;
+    --sans: "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #11151c;
+      --surround: #060809;
+      --ink: #dbe2ee;
+      --accent: #4fd7e0;
+      --accent-light: #7fe3ea;
+      --amber: #ffb648;
+      --rule: #232b3a;
+      --muted: #7c8aa0;
+      --tag: #1a2230;
+      --tag-ink: #9fd8dc;
+      --panel: #161c26;
+      --chip-ink: #07222a;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #11151c;
+    --surround: #060809;
+    --ink: #dbe2ee;
+    --accent: #4fd7e0;
+    --accent-light: #7fe3ea;
+    --amber: #ffb648;
+    --rule: #232b3a;
+    --muted: #7c8aa0;
+    --tag: #1a2230;
+    --tag-ink: #9fd8dc;
+    --panel: #161c26;
+    --chip-ink: #07222a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { background: var(--surround); }
+
+  body {
+    background: var(--surround);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 16px 56px;
+    min-height: 100vh;
+  }
+
+  /* ── TOOLBAR (PRINT / LANG) ── */
+
+  .toolbar {
+    position: fixed;
+    top: 18px;
+    right: 22px;
+    z-index: 100;
+    display: flex;
+    gap: 8px;
+  }
+
+  .print-btn, .lang-btn {
+    background: var(--accent);
+    color: var(--chip-ink);
+    border: none;
+    padding: 9px 20px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .print-btn:hover, .lang-btn:hover { opacity: 0.82; }
+  .print-btn:focus-visible, .lang-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .lang-btn {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    min-width: 46px;
+  }
+
+  /* ── i18n ── */
+  .t-fr { display: none; }
+  :root[data-lang="fr"] .t-en { display: none; }
+  :root[data-lang="fr"] .t-fr { display: inline; }
+
+  /* ── PAGE SHEET ── */
+
+  .page {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 13.5px;
+    line-height: 1.6;
+    width: 880px;
+    max-width: 100%;
+    padding: 40px 40px 44px;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.22), 0 1px 4px rgba(0,0,0,0.12);
+  }
+
+  /* ── HEADER ── */
+
+  .cv-header {
+    position: relative;
+    padding-bottom: 16px;
+  }
+
+  .cv-header::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 55%, var(--amber) 100%);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .name {
+    font-family: var(--display);
+    font-size: 44px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+    color: var(--ink);
+    line-height: 1;
+    text-wrap: balance;
+  }
+
+  .headline {
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ── TWO-COLUMN LAYOUT ── */
+
+  .cv-layout {
+    display: grid;
+    grid-template-columns: 179px 1fr;
+  }
+
+  /* ── SIDEBAR ── */
+
+  .cv-sidebar {
+    border-right: 1px solid var(--rule);
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .photo-wrap { padding-top: 16px; }
+
+  .photo-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    display: block;
+    object-fit: cover;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 26px;
+    letter-spacing: 0.02em;
+  }
+
+  .cursor-blink {
+    display: inline-block;
+    width: 3px;
+    height: 0.85em;
+    margin-left: 4px;
+    background: var(--accent);
+    vertical-align: -0.1em;
+    animation: blink 1s steps(1) infinite;
+  }
+
+  .sidebar-section {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sidebar-section:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .sidebar-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 9px;
+  }
+  .sidebar-label::before { content: "// "; color: var(--accent); }
+
+  .contact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+  .contact-list a { color: var(--muted); text-decoration: none; }
+  .contact-list a:hover { color: var(--ink); }
+
+  .skills-group { display: flex; flex-direction: column; gap: 10px; }
+  .skill-row { display: flex; flex-direction: column; gap: 5px; }
+  .skill-category {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .lang-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .lang-item { display: flex; flex-direction: column; gap: 1px; }
+  .lang-name { font-family: var(--display); font-size: 13px; letter-spacing: 0.01em; color: var(--ink); }
+  .lang-level { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.04em; }
+
+  /* ── MAIN ── */
+
+  .cv-main { padding-left: 24px; }
+
+  .main-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .main-section:last-child { border-bottom: none; }
+
+  .main-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .main-label::before { content: "//"; color: var(--accent); }
+  .main-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .section-content {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .profile-text {
+    font-size: 12.5px;
+    line-height: 1.68;
+    color: var(--ink);
+  }
+
+  /* Entries */
+  .entry { border-left: 2px solid var(--rule); padding-left: 11px; }
+
+  .patch-head {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-wrap: wrap;
+  }
+
+  .entry-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .version-chip {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .version-chip.current {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--chip-ink);
+  }
+  .live-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--amber);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  .entry-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2px 7px;
+    margin-top: 3px;
+  }
+  .entry-org { font-size: 11px; color: var(--accent-light); letter-spacing: 0.02em; }
+  .entry-place { font-size: 10.5px; color: var(--muted); }
+  .meta-dot { color: var(--rule); font-size: 8px; user-select: none; line-height: 1; }
+  .entry-date {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .entry-desc {
+    margin-top: 5px;
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .entry-desc em { font-style: italic; }
+
+  /* Changelog bullets */
+  .changelog {
+    list-style: none;
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .changelog li {
+    position: relative;
+    padding-left: 15px;
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.58;
+  }
+  .changelog li::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: var(--mono);
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .changelog em { color: var(--ink); font-style: italic; }
+
+  /* Tags */
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; }
+  .tag {
+    background: var(--tag);
+    color: var(--tag-ink);
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 8px 2.5px;
+    border-radius: 3px;
+    letter-spacing: 0.02em;
+  }
+
+  @keyframes blink { 50% { opacity: 0; } }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+  }
+
+  /* ── RESPONSIVE ── */
+
+  @media (max-width: 640px) {
+    body { padding: 0; }
+    .page { padding: 28px 18px 36px; }
+    .cv-layout { grid-template-columns: 1fr; }
+    .cv-sidebar {
+      border-right: none;
+      border-bottom: 1px solid var(--rule);
+      padding-right: 0;
+      padding-bottom: 18px;
+    }
+    .photo-placeholder { max-width: 120px; }
+    .cv-main { padding-left: 0; }
+  }
+
+  /* ── PRINT ── */
+
+  @media print {
+    @page { size: A4 portrait; margin: 8mm 10mm; }
+
+    html, body {
+      background: white;
+      padding: 0;
+      display: block;
+      min-height: unset;
+    }
+
+    *, *::before, *::after { animation: none !important; }
+
+    .toolbar { display: none; }
+    .cursor-blink { display: none; }
+
+    .page {
+      background: white;
+      width: 100%;
+      max-width: none;
+      padding: 0;
+      box-shadow: none;
+      font-size: 11.3px;
+    }
+
+    .cv-header { padding-bottom: 9.9px; }
+    .cv-header::after { background: linear-gradient(90deg, #0f6b74 0%, #0f6b74 55%, #c06a0c 100%); }
+    .name { font-size: 28.2px; }
+    .headline { font-size: 9.2px; margin-top: 4.2px; color: #0f6b74; }
+
+    .cv-layout { grid-template-columns: 166px 1fr; }
+
+    .cv-sidebar { padding-right: 16.9px; }
+    .sidebar-section { padding: 9.9px 0; }
+    .sidebar-label { font-size: 9.2px; margin-bottom: 7.1px; }
+    .sidebar-label::before { color: #0f6b74; }
+
+    .photo-wrap { padding-top: 12.7px; }
+    .photo-placeholder {
+      background: white;
+      border: 1px solid #cfd4dd;
+      color: #0f6b74;
+      font-size: 25.4px;
+    }
+
+    .contact-list { gap: 4.2px; font-size: 10.6px; }
+
+    .skills-group { gap: 8.4px; }
+    .skill-row { gap: 4.2px; }
+    .skill-category { font-size: 9.2px; }
+
+    .lang-list { gap: 5.7px; }
+    .lang-name { font-size: 11.3px; }
+    .lang-level { font-size: 9.2px; }
+
+    .cv-main { padding-left: 19.8px; }
+
+    .main-section { gap: 7.7px; padding: 9.9px 0; }
+    .main-label { font-size: 9.2px; }
+    .main-label::before { color: #0f6b74; }
+    .main-label::after { background: #cfd4dd; }
+
+    .section-content { gap: 9.9px; }
+
+    .profile-text { font-size: 11.3px; line-height: 1.48; }
+
+    .entry { padding-left: 8.4px; }
+    .entry-title { font-size: 13.8px; }
+    .entry-org { font-size: 10.6px; color: #3f8f96; }
+    .entry-place { font-size: 9.9px; }
+    .entry-date { font-size: 9.9px; }
+    .entry-meta { gap: 1.4px 7.1px; margin-top: 2.8px; }
+    .entry-desc { font-size: 10.6px; margin-top: 2.8px; line-height: 1.4; }
+
+    .version-chip {
+      font-size: 9px;
+      padding: 1.4px 6px;
+      color: #5b6472;
+      border-color: #cfd4dd;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .version-chip.current {
+      border-color: #0f6b74;
+      background: #0f6b74;
+      color: #f6f8fa;
+    }
+    .live-dot { background: #c06a0c; }
+
+    .changelog { margin-top: 3px; gap: 2.5px; }
+    .changelog li { font-size: 10.6px; padding-left: 13px; }
+    .changelog li::before { color: #0f6b74; }
+
+    .tags { gap: 4.2px; margin-top: 5.7px; }
+    .tag {
+      font-size: 9px;
+      padding: 1.4px 7.1px;
+      background: #e2e6ec;
+      color: #1f2733;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .entry { page-break-inside: avoid; }
+
+    :root[data-lang="fr"] .page { zoom: 0.99; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 1px; }
+</style>
+</head>
+
+<body>
+
+<div class="toolbar">
+  <button class="print-btn" onclick="window.print()"><span class="t-en">Print / Save as PDF</span><span class="t-fr">Imprimer / Enregistrer en PDF</span></button>
+  <button class="lang-btn" onclick="toggleLang()" aria-label="Toggle language">FR</button>
+</div>
+
+<div class="page">
+
+  <header class="cv-header">
+    <h1 class="name">Yann Galan</h1>
+    <p class="headline"><span class="t-en">Gameplay Programmer &amp; Software Engineer</span><span class="t-fr">Programmeur Gameplay &amp; Ingénieur Logiciel</span></p>
+  </header>
+
+  <div class="cv-layout">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="cv-sidebar">
+
+      <div class="photo-wrap">
+        <img class="photo-placeholder" src="assets/img/avatars/avatar.jpg" alt="Yann Galan">
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label"><span class="t-en">Contact</span><span class="t-fr">Contact</span></p>
+        <ul class="contact-list">
+          <li>Paris, France</li>
+          <li><a href="mailto:yann.galan@icloud.com">yann.galan@icloud.com</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label"><span class="t-en">Skills &amp; Tools</span><span class="t-fr">Compétences &amp; Outils</span></p>
+        <div class="skills-group">
+          <div class="skill-row">
+            <span class="skill-category"><span class="t-en">Languages &amp; Engines</span><span class="t-fr">Langages &amp; Moteurs</span></span>
+            <div class="tags">
+              <span class="tag">C#</span>
+              <span class="tag">ManiaScript</span>
+              <span class="tag">ManiaLink</span>
+              <span class="tag">Unity</span>
+              <span class="tag">Unreal Engine</span>
+              <span class="tag">C / C++</span>
+              <span class="tag">Python</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <span class="skill-category"><span class="t-en">Tools &amp; Pipeline</span><span class="t-fr">Outils &amp; Pipeline</span></span>
+            <div class="tags">
+              <span class="tag">Perforce</span>
+              <span class="tag">Git</span>
+              <span class="tag">VS Code Extensions</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <span class="skill-category"><span class="t-en">Disciplines</span><span class="t-fr">Disciplines</span></span>
+            <div class="tags">
+              <span class="tag"><span class="t-en">Gameplay Programming</span><span class="t-fr">Programmation Gameplay</span></span>
+              <span class="tag"><span class="t-en">UI/UX Systems</span><span class="t-fr">Systèmes UI/UX</span></span>
+              <span class="tag"><span class="t-en">Multiplayer</span><span class="t-fr">Multijoueur</span></span>
+              <span class="tag"><span class="t-en">Dev Tools</span><span class="t-fr">Outils de développement</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label"><span class="t-en">Languages</span><span class="t-fr">Langues</span></p>
+        <ul class="lang-list">
+          <li class="lang-item">
+            <span class="lang-name"><span class="t-en">French</span><span class="t-fr">Français</span></span>
+            <span class="lang-level"><span class="t-en">Native</span><span class="t-fr">Langue maternelle</span></span>
+          </li>
+          <li class="lang-item">
+            <span class="lang-name"><span class="t-en">English</span><span class="t-fr">Anglais</span></span>
+            <span class="lang-level"><span class="t-en">Fluent</span><span class="t-fr">Courant</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label"><span class="t-en">Interests</span><span class="t-fr">Centres d'intérêt</span></p>
+        <div class="tags">
+          <span class="tag"><span class="t-en">Music</span><span class="t-fr">Musique</span></span>
+          <span class="tag"><span class="t-en">Video Games</span><span class="t-fr">Jeux vidéo</span></span>
+          <span class="tag"><span class="t-en">Travel</span><span class="t-fr">Voyage</span></span>
+          <span class="tag"><span class="t-en">Cooking</span><span class="t-fr">Cuisine</span></span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ── MAIN ── -->
+    <main class="cv-main">
+
+      <section class="main-section" aria-label="Profile">
+        <h2 class="main-label"><span class="t-en">Profile</span><span class="t-fr">Profil</span></h2>
+        <div class="section-content">
+          <p class="profile-text">
+            <span class="t-en">Gameplay programmer with six years across live-service titles shipped to millions of players,
+            from Trackmania's console launch and multiplayer modes at Ubisoft Nadeo to The Division
+            Resurgence at Ubisoft Mobile Games. Focused on UI/UX systems, multiplayer game modes, and internal tools.</span>
+            <span class="t-fr">Programmeur gameplay avec six ans d'expérience sur des jeux service livrés à des millions de
+            joueurs, du lancement console de Trackmania et de ses modes multijoueur chez Ubisoft Nadeo à The
+            Division Resurgence chez Ubisoft Mobile Games. Spécialisé dans les systèmes UI/UX, les modes de jeu multijoueur
+            et les outils internes.</span>
+          </p>
+        </div>
+      </section>
+
+      <section class="main-section" aria-label="Experience">
+        <h2 class="main-label"><span class="t-en">Experience</span><span class="t-fr">Expérience</span></h2>
+        <div class="section-content">
+
+          <div class="entry">
+            <div class="patch-head">
+              <span class="version-chip current">v2.0<span class="live-dot" aria-hidden="true"></span></span>
+              <h3 class="entry-title"><span class="t-en">Gameplay Programmer</span><span class="t-fr">Programmeur Gameplay</span></h3>
+            </div>
+            <div class="entry-meta">
+              <span class="entry-org">Ubisoft Mobile Games</span>
+              <span class="meta-dot">●</span>
+              <span class="entry-place">Saint-Mandé · <span class="t-en">Hybrid</span><span class="t-fr">Hybride</span></span>
+              <span class="meta-dot">●</span>
+              <span class="entry-date">2025 – <span class="t-en">present</span><span class="t-fr">aujourd'hui</span></span>
+            </div>
+            <ul class="changelog">
+              <li><span class="t-en">Gameplay programming on <em>The Division Resurgence</em>, a mobile &amp; PC live-service shooter.</span><span class="t-fr">Programmation gameplay sur <em>The Division Resurgence</em>, un jeu de tir service mobile et PC.</span></li>
+            </ul>
+          </div>
+
+          <div class="entry">
+            <div class="patch-head">
+              <span class="version-chip">v1.3</span>
+              <h3 class="entry-title"><span class="t-en">Programmer</span><span class="t-fr">Programmeur</span></h3>
+            </div>
+            <div class="entry-meta">
+              <span class="entry-org">Ubisoft Nadeo</span>
+              <span class="meta-dot">●</span>
+              <span class="entry-place">Paris</span>
+              <span class="meta-dot">●</span>
+              <span class="entry-date">2023 – 2025</span>
+            </div>
+            <ul class="changelog">
+              <li><span class="t-en">Shipped <em>Trackmania</em>'s console launch — Xbox, PlayStation, Luna, Stadia — and 20+ live updates since.</span><span class="t-fr">Lancement console de <em>Trackmania</em> (Xbox, PlayStation, Luna, Stadia) et de plus de 20 mises à jour.</span></li>
+              <li><span class="t-en">Built UI/UX menus, in-game modules, and multiplayer modes: Stunt, Royal Time Attack.</span><span class="t-fr">Développement des menus UI/UX, de modules in-game et des modes multijoueur Stunt et Royal Time Attack.</span></li>
+              <li><span class="t-en">Wrote internal dev tools: the Toolbox and a VS Code extension for ManiaScript.</span><span class="t-fr">Création d'outils internes : la Toolbox et une extension VS Code pour ManiaScript.</span></li>
+            </ul>
+          </div>
+
+          <div class="entry">
+            <div class="patch-head">
+              <span class="version-chip">v1.2</span>
+              <h3 class="entry-title"><span class="t-en">Junior Programmer</span><span class="t-fr">Programmeur Junior</span></h3>
+            </div>
+            <div class="entry-meta">
+              <span class="entry-org">Ubisoft Nadeo</span>
+              <span class="meta-dot">●</span>
+              <span class="entry-place">Paris</span>
+              <span class="meta-dot">●</span>
+              <span class="entry-date">2021 – 2023</span>
+            </div>
+            <ul class="changelog">
+              <li><span class="t-en">Junior UI/UX programmer on Trackmania, in ManiaScript and ManiaLink.</span><span class="t-fr">Programmeur UI/UX junior sur Trackmania, en ManiaScript et ManiaLink.</span></li>
+            </ul>
+          </div>
+
+          <div class="entry">
+            <div class="patch-head">
+              <span class="version-chip">v1.1</span>
+              <h3 class="entry-title"><span class="t-en">UI/UX Programmer — Intern</span><span class="t-fr">Programmeur UI/UX — Stagiaire</span></h3>
+            </div>
+            <div class="entry-meta">
+              <span class="entry-org">Ubisoft Nadeo</span>
+              <span class="meta-dot">●</span>
+              <span class="entry-place">Paris</span>
+              <span class="meta-dot">●</span>
+              <span class="entry-date">2020 – 2021</span>
+            </div>
+            <ul class="changelog">
+              <li><span class="t-en">End-of-studies internship on Trackmania's UI/UX systems — led directly to a full-time offer.</span><span class="t-fr">Stage de fin d'études sur les systèmes UI/UX de Trackmania — a directement conduit à une embauche en CDI.</span></li>
+            </ul>
+          </div>
+
+          <div class="entry">
+            <div class="patch-head">
+              <span class="version-chip">v1.0</span>
+              <h3 class="entry-title"><span class="t-en">Computer Science Intern — R&amp;D</span><span class="t-fr">Stagiaire Informatique — R&amp;D</span></h3>
+            </div>
+            <div class="entry-meta">
+              <span class="entry-org">LIFAT</span>
+              <span class="meta-dot">●</span>
+              <span class="entry-place">Tours</span>
+              <span class="meta-dot">●</span>
+              <span class="entry-date">2019</span>
+            </div>
+            <ul class="changelog">
+              <li><span class="t-en">Built tools for visualisation and interactive data mining to transcribe and index historical documents.</span><span class="t-fr">Développement d'outils de visualisation et de fouille de données interactive pour la transcription et l'indexation de documents historiques.</span></li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="main-section" aria-label="Education">
+        <h2 class="main-label"><span class="t-en">Education</span><span class="t-fr">Formation</span></h2>
+        <div class="section-content">
+
+          <div class="entry">
+            <h3 class="entry-title"><span class="t-en">Master's Degree, Computer Science</span><span class="t-fr">Master en Informatique</span></h3>
+            <div class="entry-meta">
+              <span class="entry-org">Université du Québec à Chicoutimi</span>
+              <span class="meta-dot">●</span>
+              <span class="entry-date">2019–2020</span>
+            </div>
+            <p class="entry-desc"><span class="t-en">Dual-degree program, video game specialisation.</span><span class="t-fr">Double diplôme, spécialisation jeux vidéo.</span></p>
+          </div>
+
+          <div class="entry">
+            <h3 class="entry-title"><span class="t-en">Engineer's Degree, Computer Science</span><span class="t-fr">Diplôme d'ingénieur en Informatique</span></h3>
+            <div class="entry-meta">
+              <span class="entry-org">Polytech Tours</span>
+              <span class="meta-dot">●</span>
+              <span class="entry-date">2017–2020</span>
+            </div>
+            <p class="entry-desc"><span class="t-en">Specialisation in Information Systems.</span><span class="t-fr">Spécialisation Systèmes d'Information.</span></p>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="main-section" aria-label="Selected Projects">
+        <h2 class="main-label"><span class="t-en">Selected Projects</span><span class="t-fr">Projets sélectionnés</span></h2>
+        <div class="section-content">
+
+          <div class="entry">
+            <div class="patch-head">
+              <span class="version-chip">rel 2020</span>
+              <h3 class="entry-title">For The Berry</h3>
+            </div>
+            <p class="entry-desc">
+              <span class="t-en">Local co-op beat-'em-up for four players. Built the main menu, in-game HUD, and
+              scene-loading pipeline, plus the game's visual identity and logo.</span>
+              <span class="t-fr">Beat-'em-up coopératif local pour quatre joueurs. Développement du menu principal,
+              du HUD in-game et du pipeline de chargement des scènes, ainsi que de l'identité visuelle et du logo du jeu.</span>
+            </p>
+            <div class="tags">
+              <span class="tag">Unity</span>
+              <span class="tag">C#</span>
+              <span class="tag">Perforce</span>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="patch-head">
+              <span class="version-chip">rel 2019</span>
+              <h3 class="entry-title">Willo's Tale</h3>
+            </div>
+            <p class="entry-desc">
+              <span class="t-en">Low-poly 3D puzzle-platformer built under a strict Scrum framework. Owned gameplay and
+              level systems across a full academic sprint cycle.</span>
+              <span class="t-fr">Jeu de puzzle-plateforme 3D low-poly développé selon un cadre Scrum strict. Responsable
+              du gameplay et des systèmes de niveaux sur un cycle complet de sprints académiques.</span>
+            </p>
+            <div class="tags">
+              <span class="tag">Unity</span>
+              <span class="tag">C#</span>
+              <span class="tag">Scrum</span>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="patch-head">
+              <span class="version-chip">rel 2018</span>
+              <h3 class="entry-title">Tobii Game Box</h3>
+            </div>
+            <p class="entry-desc">
+              <span class="t-en">Mini-game suite for the Tobii eye-tracking device, built directly against its low-level
+              C/C++ Stream Engine SDK with a custom SDL2 interface layer.</span>
+              <span class="t-fr">Suite de mini-jeux pour le dispositif de suivi oculaire Tobii, développée directement sur
+              son SDK bas niveau Stream Engine en C/C++, avec une interface SDL2 sur mesure.</span>
+            </p>
+            <div class="tags">
+              <span class="tag">C / C++</span>
+              <span class="tag">SDL2</span>
+              <span class="tag">Accessibility</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('data-lang', lang);
+    document.querySelectorAll('.lang-btn').forEach(function (btn) {
+      btn.textContent = lang === 'fr' ? 'EN' : 'FR';
+    });
+    try { localStorage.setItem('cv-lang', lang); } catch (e) {}
+  }
+  function toggleLang() {
+    var current = document.documentElement.getAttribute('data-lang') === 'fr' ? 'fr' : 'en';
+    setLang(current === 'fr' ? 'en' : 'fr');
+  }
+  (function () {
+    var urlLang = new URLSearchParams(location.search).get('lang');
+    if (urlLang === 'fr' || urlLang === 'en') { setLang(urlLang); return; }
+    try {
+      if (localStorage.getItem('cv-lang') === 'fr') setLang('fr');
+    } catch (e) {}
+  })();
+</script>
+
+</body>
+</html>
